@@ -1,0 +1,51 @@
+﻿@model BookStore.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Title</h2>
+
+
+<table class="table table-striped">
+    <tr>
+        <td rowspan="0" align="center"><img src="@Model.ImageUrl" height="300px" width="220px"></td>
+
+    </tr>
+    <tr>
+        <td><b>Title</b></td>
+        <td>@Html.DisplayFor(model => model.Title)</td>
+
+    </tr>
+    <tr>
+        <td><b>Description</b></td>
+        <td>@Html.DisplayFor(model => model.Description)</td>
+
+    </tr>
+    <tr>
+        <td><b>Count</b></td>
+        <td>@Html.DisplayFor(model => model.Count)</td>
+
+    </tr>
+    <tr>
+        <td><b>Author(s):</b></td>
+        <td>
+            
+                @foreach (var a in Model.Authors)
+                {
+                   @Html.ActionLink(a.Name, "Details", "Authors", new { id = a.Id }, null)<br/>
+
+                   
+                    
+                }
+            
+        </td>
+    </tr>
+</table>
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Show all books", "Index")
+</p>

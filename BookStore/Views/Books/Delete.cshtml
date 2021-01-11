@@ -1,0 +1,55 @@
+﻿@model BookStore.Models.Book
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+
+    <table class="table table-striped">
+        <tr>
+            <td rowspan="0" align="center"><img src="@Model.ImageUrl" height="300px" width="220px"></td>
+
+        </tr>
+        <tr>
+            <td><b>Title</b></td>
+            <td>@Html.DisplayFor(model => model.Title)</td>
+
+        </tr>
+        <tr>
+            <td><b>Description</b></td>
+            <td>@Html.DisplayFor(model => model.Description)</td>
+
+        </tr>
+        <tr>
+            <td><b>Count</b></td>
+            <td>@Html.DisplayFor(model => model.Count)</td>
+
+        </tr>
+        <tr>
+            <td><b>Author(s):</b></td>
+            <td>
+                <ul>
+                    @foreach (var a in Model.Authors)
+                    {
+                        <li>@a.Name</li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    </table>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Show all books", "Index")
+        </div>
+    }
+</div>
